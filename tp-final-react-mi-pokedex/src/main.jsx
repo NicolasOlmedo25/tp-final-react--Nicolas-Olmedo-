@@ -1,22 +1,29 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// enrutamiento
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// paginas
+// componentes de la pagina
 import { HomePage } from './pages/HomePage';
 import { ListadoPage } from './pages/ListadoPage';
 import { DetallePage } from './pages/DetallePage';
 
-// definicion de rutas
+// 2. componente reutilizable
+import { Header } from './components/Header'; 
+
+// app
 function App() { 
   return (
     <BrowserRouter> 
-        <Routes>  
+    
+        <Header /> 
+        
+        <Routes> 
             <Route path="/" element={<HomePage />} />
             <Route path="/listado" element={<ListadoPage />} />
             <Route path="/pokemon/:id" element={<DetallePage />} />
-            <Route path="*" element={<h1>404 - Página no encontrada</h1>} /> 
+            <Route path="*" element={<h1>404 - ¡Pokémon no encontrado!</h1>} /> 
         </Routes>
     </BrowserRouter>
   );
