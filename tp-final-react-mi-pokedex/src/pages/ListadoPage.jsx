@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container'; // centra el contenido
+import { PokemonCard } from '../components/PokemonCard';
 
 export function ListadoPage() {
     // lista de pokemones
@@ -37,10 +39,10 @@ export function ListadoPage() {
     // renderizado
     return (
         <main className="container mt-4">
-            <h1>Listado de Pokémons</h1>
+            <h1>Listado de Pokemons</h1>
             
             
-            <p>Se cargaron {pokemons.length} Pokémon desde la PokeApi</p>
+            <p>Se cargaron {pokemons.length} pokemons de la primera generacion desde la PokeApi</p>
 
             
             <div className="row">
@@ -48,10 +50,8 @@ export function ListadoPage() {
                 {pokemons.map((pokemon, index) => (
                     <div key={index} className="col-md-3 mb-3">
                         {/*nombre del pokemon*/}
-                        <div className="card p-2 text-center">
-                            {pokemon.name}
+                        <PokemonCard pokemon={pokemon} />
                         </div>
-                    </div>
                 ))}
             </div>
         </main>
