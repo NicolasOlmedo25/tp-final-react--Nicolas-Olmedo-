@@ -10,7 +10,7 @@ import { ListadoPage } from './pages/ListadoPage';
 import { DetallePage } from './pages/DetallePage';
 
 // 2. componente reutilizable
-import { Header } from './components/Header'; 
+import { Header } from './components/header'; 
 
 // app
 function App() { 

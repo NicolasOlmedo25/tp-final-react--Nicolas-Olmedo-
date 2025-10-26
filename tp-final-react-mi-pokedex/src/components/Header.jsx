@@ -8,7 +8,7 @@ export function Header() {
     <Navbar bg="danger" variant="dark" expand="lg" className="mb-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Pokédex React
+          NicoDex
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -19,11 +19,11 @@ export function Header() {
             </Nav.Link>
             
             <Nav.Link as={Link} to="/listado">
-              📜 Listado
+              📜 Listado de Pokemons
             </Nav.Link>
             
             <Nav.Link as={Link} to="/pokemon/25">
-              🔎 Detalles
+              🔎 Detalles de Pokemons
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
