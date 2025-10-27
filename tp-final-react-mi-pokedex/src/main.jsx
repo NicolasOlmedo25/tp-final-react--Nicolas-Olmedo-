@@ -12,6 +12,10 @@ import { DetallePage } from './pages/DetallePage';
 // 2. componente reutilizable
 import { Header } from './components/header'; 
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css'; // conexion con style.css
+
+
 // app
 function App() { 
   return (

@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container'; // centra el contenido
+import Form from 'react-bootstrap/Form'; //para el buscador 
 import { PokemonCard } from '../components/PokemonCard';
 
 export function ListadoPage() {
     // lista de pokemones
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [searchTerm, setSearchTerm] = useState(''); //guardar el texo que escribe el usuario
+    
 
     // llamada a la api
     useEffect(() => {
@@ -26,6 +30,10 @@ export function ListadoPage() {
         fetchPokemons();
     }, []); 
 
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
     // mensaje mientras carga
     if (loading) {
         return (
@@ -35,25 +43,42 @@ export function ListadoPage() {
             </main>
         );
     }
+
+    const filteredPokemons = pokemons.filter(pokemon => 
+        
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()) //compara las minusculas  
+    );
     
     // renderizado
     return (
         <main className="container mt-4">
             <h1>Listado de Pokemons</h1>
+        
             
             
             <p>Se cargaron {pokemons.length} pokemons de la primera generacion desde la PokeApi</p>
 
-            
+            {/* campo de busqueda*/}
+            <Form.Group className="mb-4">
+                <Form.Control
+                    type="text"
+                    placeholder="Buscar Pokémon..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                />
+            </Form.Group>
+
             <div className="row">
-                {/*mapeo*/}
-                {pokemons.map((pokemon, index) => (
-                    <div key={index} className="col-md-3 mb-3">
-                        {/*nombre del pokemon*/}
+                {filteredPokemons.map((pokemon, index) => (
+                    <div key={index} className="col-md-3 col-sm-6 mb-4">
                         <PokemonCard pokemon={pokemon} />
-                        </div>
+                    </div>
                 ))}
             </div>
+            
+
+            
+            
         </main>
     );
 }

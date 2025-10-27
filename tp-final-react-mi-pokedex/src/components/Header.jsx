@@ -8,7 +8,7 @@ export function Header() {
     <Navbar bg="danger" variant="dark" expand="lg" className="mb-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          NicoDex
+          PokeDex LITE
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
