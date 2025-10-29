@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export function Header() {
   return (
-    <Navbar bg="danger" variant="dark" expand="lg" className="mb-4">
+    <Navbar bg="danger" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/">
           PokeDex LITE

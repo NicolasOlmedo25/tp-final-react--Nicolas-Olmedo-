@@ -51,12 +51,12 @@ export function ListadoPage() {
     
     // renderizado
     return (
-        <main className="container mt-4">
-            <h1>Listado de Pokemons</h1>
+        <main className="listado-background">
+            <h1 className='text-center'>Listado de Pokemons</h1>
         
             
             
-            <p>Se cargaron {pokemons.length} pokemons de la primera generacion desde la PokeApi</p>
+            <h5 className='text-center'>Se cargaron {pokemons.length} pokemons de la primera generacion desde la PokeApi</h5>
 
             {/* campo de busqueda*/}
             <Form.Group className="mb-4">
