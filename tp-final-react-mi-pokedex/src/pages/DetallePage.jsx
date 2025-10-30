@@ -4,6 +4,28 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 
+const getTypeColor = (type) => {
+    switch (type.toLowerCase()) {
+        case 'fire': return '#FD7D24';
+        case 'grass': return '#9BCC50';
+        case 'water': return '#4592C4';
+        case 'bug': return '#729F36';
+        case 'normal': return '#A4ACAF';
+        case 'poison': return '#B97FC9';
+        case 'electric': return '#eed535';
+        case 'ground': return '#F7DE3F';
+        case 'fairy': return '#FDB9E9';
+        case 'fighting': return '#D56723';
+        case 'psychic': return '#F366B9';
+        case 'rock': return '#A38C21';
+        case 'steel': return '#9EB7B8';
+        case 'ice': return '#51C4E7';
+        case 'ghost': return '#7B62A3';
+        case 'dragon': return '#38a8e3';
+        default: return '#6D6D6D'; 
+    }
+};
+
 export function DetallePage() {
     // obtener el id a traves de la  url
     const { id } = useParams(); 
@@ -48,16 +70,28 @@ export function DetallePage() {
 
     // ultimo renderizado
     return (
-        <main className="container mt-5">
-            <Card style={{ maxWidth: '400px', margin: '0 auto' }} className="shadow-lg">
+        <div className="detalle-background"> 
+            
+            
+            <Card 
+                style={{ maxWidth: '400px' }} 
+                // Añadimos una sombra más pronunciada y un borde redondeado
+                className="shadow-xl rounded-4 mx-auto mt-5 mb-5" 
+            >
                 <Card.Img 
                     variant="top" 
                     src={imageUrl} 
                     alt={pokemonData.name} 
-                    style={{ backgroundColor: '#f0f0f0' }}
+                    // Color de fondo más neutro y borde superior redondeado
+                    style={{ backgroundColor: '#e9ecef', borderTopLeftRadius: '0.3rem', borderTopRightRadius: '0.3rem', padding: '15px' }}
                 />
                 <Card.Body className="text-center">
-                    <Card.Title style={{ textTransform: 'capitalize', fontSize: '2em' }}>
+                    <Card.Title style={{ 
+                        textTransform: 'capitalize', 
+                        fontSize: '2.5em', // Hacemos el título más grande
+                        fontWeight: 'bold', // Y más audaz
+                        color: '#343a40' // Color oscuro
+                    }}>
                         #{pokemonData.id} - {pokemonData.name}
                     </Card.Title>
                     
@@ -68,11 +102,13 @@ export function DetallePage() {
                         {pokemonData.types.map((typeInfo, index) => (
                             <Badge 
                                 key={index} 
-                                bg="secondary" 
-                                className="me-2"
+                                
+                                className="me-2 text-uppercase fw-bold"
                                 style={{ 
-                                    textTransform: 'uppercase', 
-                                    backgroundColor: (typeInfo.type.name === 'fire' ? '#FD7D24' : '#6A8FBC') // Ejemplo de color básico
+                            
+                                    backgroundColor: getTypeColor(typeInfo.type.name),
+                                    color: 'white',
+                                    padding: '0.5em 0.8em' 
                                 }}
                             >
                                 {typeInfo.type.name}
@@ -80,13 +116,24 @@ export function DetallePage() {
                         ))}
                     </p>
                     
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>Altura: {pokemonData.height / 10} m</ListGroup.Item>
-                        <ListGroup.Item>Peso: {pokemonData.weight / 10} kg</ListGroup.Item>
+                    <ListGroup variant="flush" className="mt-3">
+                        <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                            <span className="fw-bold text-muted">Altura:</span> 
+                            <span className="text-primary">{pokemonData.height / 10} m</span>
+                        </ListGroup.Item>
+                        <ListGroup.Item className="d-flex justify-content-between align-items-center">
+                            <span className="fw-bold text-muted">Peso:</span> 
+                            <span className="text-primary">{pokemonData.weight / 10} kg</span>
+                        </ListGroup.Item>
                         <ListGroup.Item>
-                            Habilidades: 
+                            <span className="fw-bold d-block mb-2 text-muted">Habilidades:</span> 
                             {pokemonData.abilities.map(abilityInfo => 
-                                <Badge key={abilityInfo.ability.name} bg="info" className="ms-2" style={{ textTransform: 'capitalize' }}>
+                                <Badge 
+                                    key={abilityInfo.ability.name} 
+                                    bg="success" 
+                                    className="ms-2 mt-1" 
+                                    style={{ textTransform: 'capitalize' }}
+                                >
                                     {abilityInfo.ability.name}
                                 </Badge>
                             )}
@@ -94,6 +141,8 @@ export function DetallePage() {
                     </ListGroup>
                 </Card.Body>
             </Card>
-        </main>
+            
+        </div> 
     );
 }
+    

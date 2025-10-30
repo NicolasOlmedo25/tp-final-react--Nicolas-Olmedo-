@@ -5,15 +5,21 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export function Header() {
   return (
-    <Navbar bg="danger" variant="dark" expand="lg">
+    <Navbar bg="danger" variant="dark" expand="lg" className=""> 
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand 
+          as={Link} 
+          to="/" 
+          className="nicodex-logo"
+        >
           PokeDex LITE
         </Navbar.Brand>
         
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        {/* Usamos ms-auto en lugar de me-auto para empujar el Nav hacia la derecha */}
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto"> 
             <Nav.Link as={Link} to="/">
               🏠 Home
             </Nav.Link>
